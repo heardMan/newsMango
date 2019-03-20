@@ -16,6 +16,8 @@
     {{!-- custom CSS --}}
     <link rel="stylesheet" href="/public/css/main.css">
 
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
     <link rel="icon" href="/images/favicon.png">
     <title>mango</title>
 </head>
@@ -83,5 +85,73 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
 </body>
+<script>
+    $(document).ready(() => {
+        //define sign in link
+        var signInLink = `<li class="nav-item">
+                                <a class="nav-link" href="/login">Sign In / Register</a>
+                            </li>`;
+        //define profile link
+        var profileLink = `<li class="nav-item">
+                                <a class="nav-link" href="/profile">Profile</a>
+                            </li>`;
+        //define log out link
+        var logOutLink = `<li class="nav-item">
+                                <a id="signOut" class="nav-link" href="#">Sign Out</a>
+                            </li>`;
+        //set valid userId
+        console.log(document.cookie.split("=")[0]);
+        //check to see if the user is signed in
+        if (document.cookie.split("=")[0] === 'token') {
+            //if user logged in append appropriate links to navbar
+            $("#navLinks").append(profileLink + logOutLink)
+            $("#signOut").click(function (e) {
+                //e.preventDefault();
+                document.cookie.split(";").forEach(function (c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
+                location.reload();
+                window.location.assign("/");
+            })
+        } else {
+            //if user not logged append appropriate links to navbar
+            $("#navLinks").append(signInLink)
+        }
+
+        $("#register").click(function(e) {
+            e.preventDefault();
+
+            var user = {
+                email: $("#register-email").val().trim(),
+                password: $("#register-password-one").val().trim()
+            };
+
+            axios.post("/register", user)
+            .then(function(resp) {
+                console.log(resp);
+            })
+            .catch(function(err) {
+                console.log(err);
+            });
+
+        });
+
+        $("#signIn").click(function(e) {
+            e.preventDefault();
+            var user = {
+                email: $("#signIn-email").val().trim(),
+                password: $("#signIn-password").val().trim()
+            };
+
+            axios.post("/login", user)
+            .then(function(resp) {
+                console.log(resp);
+            })
+            .catch(function(err) {
+                console.log(err);
+            });
+
+        });
+
+    })
+</script>
 
 </html>

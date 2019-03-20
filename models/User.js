@@ -1,8 +1,8 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
-var Schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
-var UserSchema = new Schema({
+const UserSchema = new Schema({
     firstName: {
         type: String,
     },
@@ -15,16 +15,11 @@ var UserSchema = new Schema({
         required: "eMail is required.",
         match: [/.+@.+\../, "Please enter a valid email address"]
     },
-    password:{
+    hash:{
         type: String,
-        trim: true,
-        required: "Password is required",
-        validate: [
-            function(input){
-                return input.length >= 6;
-            },
-            "Password should be longer"
-        ]
+    },
+    salt:{
+        type: String,
     },
     created: {
         type: Date,
@@ -36,7 +31,8 @@ var UserSchema = new Schema({
     fullName: {
         type: String
     },
-    savedArticles: {}
+    savedArticles: [],
+    notes: []
 });
 
 UserSchema.methods.setFullName = function(){
@@ -48,6 +44,6 @@ UserSchema.methods.lastUpdateDate = function(){
 
 }
 
-var User = mongoose.model("User", UserSchema);
+const User = mongoose.model("User", UserSchema);
 
 module.exports = User;

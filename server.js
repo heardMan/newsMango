@@ -25,7 +25,9 @@ app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
 app.use(express.static("public"));
-mongoose.connect("mongodb://localhost/newsmango", { useNewUrlParser: true});
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/newsmango";
+mongoose.connect(MONGODB_URI);
+// mongoose.connect("mongodb://localhost/newsmango", { useNewUrlParser: true});
 
 app.use(htmlRoutes);
 app.use(authRoutes);

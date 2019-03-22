@@ -1,8 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var db = require("../models");
-var axios = require("axios");
-var marketwatch = require("../scrapers/marketWatch");
+
 
 //user routes
 //create

@@ -1,0 +1,99 @@
+body{
+    background: #ecf0f1;
+    font-family: 'Quattrocento Sans', sans-serif;
+}
+.sea-green{
+    background: #1ba39c;
+}
+.nav-shadow{
+    box-shadow: 0px 5px 10px #2e3131;
+}
+
+.sidebar{
+    width: 250px;
+    height: 100%;
+    position: absolute;
+    right: 0%;
+    top: 0%;
+    
+    margin-right: -250px;
+    border-style: solid;
+    border-width: 5px;
+    background: #1ba39c;
+    
+}
+
+.open{
+    margin-right: 0px;
+    animation-name: open;
+    animation-duration: 0.2s;
+}
+
+.close{
+    margin-right: -250px;
+    animation-name: close;
+    animation-duration: 0.2s;
+}
+
+
+
+@keyframes open {
+    0%   {margin-right: -250px;}
+    4%   {margin-right: -240px;}
+    8%   {margin-right: -230px;}
+    12%   {margin-right: -220px;}
+    16%   {margin-right: -210px;}
+    20%   {margin-right: -200px;}
+    24%   {margin-right: -190px;}
+    28%   {margin-right: -180px;}
+    32%   {margin-right: -170px;}
+    36%   {margin-right: -160px;}
+    40%   {margin-right: -150px;}
+    44%   {margin-right: -140px;}
+    48%   {margin-right: -130px;}
+    52%   {margin-right: -120px;}
+    56%   {margin-right: -110px;}
+    60%   {margin-right: -100px;}
+    64%   {margin-right: -90px;}
+    68%   {margin-right: -80px;}
+    72%   {margin-right: -70px;}
+    76%   {margin-right: -60px;}
+    80%   {margin-right: -50px;}
+    84%   {margin-right: -40px;}
+    88%   {margin-right: -30px;}
+    92%   {margin-right: -20px;}
+    96%   {margin-right: -10px;}
+    100%   {margin-right: 0px;}
+    
+  }
+
+  @keyframes close {
+    0%   {margin-right: 0px;}
+    4%   {margin-right: -10px;}
+    8%   {margin-right: -20px;}
+    12%   {margin-right: -30px;}
+    16%   {margin-right: -40px;}
+    20%   {margin-right: -50px;}
+    24%   {margin-right: -60px;}
+    28%   {margin-right: -70px;}
+    32%   {margin-right: -80px;}
+    36%   {margin-right: -90px;}
+    40%   {margin-right: -100px;}
+    44%   {margin-right: -110px;}
+    48%   {margin-right: -120px;}
+    52%   {margin-right: -130px;}
+    56%   {margin-right: -140px;}
+    60%   {margin-right: -150px;}
+    64%   {margin-right: -160px;}
+    68%   {margin-right: -170px;}
+    72%   {margin-right: -180px;}
+    76%   {margin-right: -190px;}
+    80%   {margin-right: -200px;}
+    84%   {margin-right: -210px;}
+    88%   {margin-right: -220px;}
+    92%   {margin-right: -230px;}
+    96%   {margin-right: -240px;}
+    100%   {margin-right: -250px;}
+    
+  }
+  

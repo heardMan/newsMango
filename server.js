@@ -1,16 +1,16 @@
 require('dotenv').config()
-var express = require("express");
-var logger = require("morgan");
-var exphbs = require("express-handlebars");
-var axios = require("axios");
-var cheerio = require("cheerio");
-var mongoose = require("mongoose");
-var db = require("./models");
-var htmlRoutes = require("./routes/html");
-var authRoutes = require("./routes/auth");
-var apiRoutes = require("./routes/api");
-var errorRoutes  = require("./routes/error");
-var updateArticles  = require("./db/update")
+const express = require("express");
+const logger = require("morgan");
+const exphbs = require("express-handlebars");
+const axios = require("axios");
+const cheerio = require("cheerio");
+const mongoose = require("mongoose");
+const db = require("./models");
+const htmlRoutes = require("./routes/html");
+const authRoutes = require("./routes/auth");
+const apiRoutes = require("./routes/api");
+const errorRoutes  = require("./routes/error");
+const updateArticles  = require("./db/update")
 
 var PORT = process.env.PORT || 3000;
 
@@ -33,6 +33,7 @@ app.use(apiRoutes);
 app.use(errorRoutes);
 
 updateArticles.marketwatch();
+updateArticles.phys();
 
 app.listen(PORT, function(){
     console.log(`App now listening on Port#: ${PORT}`);

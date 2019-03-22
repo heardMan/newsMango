@@ -1,40 +1,67 @@
-var marketwatch = require("../scrapers/marketWatch");
-var db = require("../models");
-var mongoose = require("mongoose");
+const db = require("../models");
+const mongoose = require("mongoose");
+const marketwatch = require("../scrapers/marketWatch");
+const phys = require("../scrapers/phys");
 
 //mongoose.connect("mongodb://localhost/newsmango", { useNewUrlParser: true});
 
 var update = {
-    marketwatch: function(){
-        marketwatch.scrape(function(data){
-            //console.log(data);
-            data.forEach( elem => {
-                console.log("TITLE"+elem.title);
+    marketwatch: function () {
+        marketwatch.scrape((data) => {
+            
+            data.forEach(elem => {
+                
                 db.Article.find({
                     title: elem.title
                 })
-                .then(function(resp){
-                    console.log(resp);
-                    if(resp.length === 0){
+                .then(function (resp) {
+                    
+                    if (resp.length === 0) {
                         db.Article.create(elem)
-                        .then(function(resp) {
-                            console.log(resp);
+                        .then(function (resp) {
+                            console.log(`Successfully Added: \n${resp}`);
                         })
-                        .catch(function(err) {
-                            if(err) throw err;
+                        .catch(function (err) {
+                            if (err) throw err;
                         })
                     }
-                    
+
                 })
-                .catch(function(err){
+                .catch(function (err) {
                     console.log(err);
-                })
-            })
-            
+                });
+            });
+
         });
     },
+    phys: function () {
+        phys.scrape(data => {
+            data.forEach(elem => {
+                
+                db.Article.find({
+                    title: elem.title
+                })
+                .then(function (resp) {
+                    
+                    if (resp.length === 0) {
+                        db.Article.create(elem)
+                        .then(function (resp) {
+                            console.log(`Successfully Added: \n${resp}`);
+                        })
+                        .catch(function (err) {
+                            if (err) throw err;
+                        })
+                    }
+
+                })
+                .catch(function (err) {
+                    console.log(err);
+                });
+            });
+        })
+    },
+    
+
 }
 
 module.exports = update;
-
-

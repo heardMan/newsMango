@@ -9,6 +9,20 @@ body{
     box-shadow: 0px 5px 10px #2e3131;
 }
 
+.shadow{
+    box-shadow: 5px 5px 10px #2e3131;
+}
+
+.story:hover{
+    box-shadow: 5px 5px 10px #2e3131;
+    transform: scale(1.05);
+}
+
+.story:active{
+    box-shadow: 0px 0px 0px #2e3131;
+    transform: scale(1.00);
+}
+
 .sidebar{
     width: 250px;
     height: 100%;
@@ -34,6 +48,8 @@ body{
     animation-name: close;
     animation-duration: 0.2s;
 }
+
+
 
 @keyframes open {
     0%   {margin-right: -250px;}

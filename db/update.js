@@ -4,6 +4,8 @@ const marketwatch = require("../scrapers/marketWatch");
 const phys = require("../scrapers/phys");
 
 //mongoose.connect("mongodb://localhost/newsmango", { useNewUrlParser: true});
+//var DBURL = "mongodb://heroku_dcwpphsv:ecq319ma1nim85rqbn5admqsr6@ds155815.mlab.com:55815/heroku_dcwpphsv";
+//mongoose.connect(DBURL, { useNewUrlParser: true});
 
 var update = {
     marketwatch: function () {
@@ -68,6 +70,7 @@ var update = {
 
 }
 
-//update.phys();
+update.phys();
+update.marketwatch();
 
 module.exports = update;

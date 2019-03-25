@@ -1,4 +1,4 @@
-require('dotenv').config();
+//require('dotenv').config();
 const express = require("express");
 const logger = require("morgan");
 const exphbs = require("express-handlebars");
@@ -32,8 +32,8 @@ app.use(authRoutes);
 app.use(apiRoutes);
 app.use(errorRoutes);
 
-updateArticles.marketwatch();
-updateArticles.phys();
+//updateArticles.marketwatch();
+//updateArticles.phys();
 
 app.listen(PORT, function(){
     console.log(`App now listening on Port#: ${PORT}`);

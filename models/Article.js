@@ -19,6 +19,9 @@ var ArticleSchema = new Schema({
     category: {
         type: String,
         required: true,
+    },
+    imgLink: {
+        type: String
     }
 
 });

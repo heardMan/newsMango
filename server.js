@@ -1,20 +1,18 @@
-require('dotenv').config()
+require('dotenv').config();
 const express = require("express");
 const logger = require("morgan");
 const exphbs = require("express-handlebars");
-const axios = require("axios");
-const cheerio = require("cheerio");
 const mongoose = require("mongoose");
-const db = require("./models");
 const htmlRoutes = require("./routes/html");
 const authRoutes = require("./routes/auth");
 const apiRoutes = require("./routes/api");
 const errorRoutes  = require("./routes/error");
-const updateArticles  = require("./db/update")
+const updateArticles  = require("./db/update");
 
-var PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/newsmango";
 
-var app = express();
+const app = express();
 
 app.use(logger("dev"));
 
@@ -25,9 +23,9 @@ app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
 app.use(express.static("public"));
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/newsmango";
-mongoose.connect(MONGODB_URI);
-// mongoose.connect("mongodb://localhost/newsmango", { useNewUrlParser: true});
+
+
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true});
 
 app.use(htmlRoutes);
 app.use(authRoutes);
@@ -42,4 +40,4 @@ app.listen(PORT, function(){
     
 });
 
-
+module.exports = app;

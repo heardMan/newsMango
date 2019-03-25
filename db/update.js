@@ -7,23 +7,24 @@ const phys = require("../scrapers/phys");
 
 var update = {
     marketwatch: function () {
-        marketwatch.scrape((data) => {
-            
+        marketwatch.scrape(data => {
+            //console.log(data);
             data.forEach(elem => {
                 
                 db.Article.find({
-                    title: elem.title
+                    link: elem.link
                 })
                 .then(function (resp) {
-                    
-                    if (resp.length === 0) {
+                   console.log(resp);
+                    if (resp === [] || resp.length === 0) {
                         db.Article.create(elem)
                         .then(function (resp) {
                             console.log(`Successfully Added: \n${resp}`);
                         })
                         .catch(function (err) {
-                            if (err) throw err;
+                           console.log(err);
                         })
+                        
                     }
 
                 })
@@ -36,21 +37,25 @@ var update = {
     },
     phys: function () {
         phys.scrape(data => {
+            //console.log(data);
             data.forEach(elem => {
                 
                 db.Article.find({
-                    title: elem.title
+                    link: elem.link
                 })
                 .then(function (resp) {
-                    
-                    if (resp.length === 0) {
+                    console.log("RESP:  "+resp);
+                    if (resp.length === 0 || resp === "") {
+                        
                         db.Article.create(elem)
                         .then(function (resp) {
                             console.log(`Successfully Added: \n${resp}`);
                         })
                         .catch(function (err) {
-                            if (err) throw err;
+                            console.log(err);
                         })
+                    
+                    
                     }
 
                 })
@@ -60,8 +65,9 @@ var update = {
             });
         })
     },
-    
 
 }
+
+//update.phys();
 
 module.exports = update;

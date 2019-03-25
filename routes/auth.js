@@ -1,5 +1,5 @@
 //require dependencies
-require("dotenv").config();
+//require("dotenv").config();
 const models = require("../models");
 const express = require("express");
 const jwt = require('jsonwebtoken');
